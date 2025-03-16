@@ -38,24 +38,24 @@
         <form action="">
             <div class="form-row">
                 <div class="form-group col-md-6">
-                    <label for="name">Name</label>
+                    <label for="name">Name <red>*</red></label>
                     <input type="text" class="form-control" id="" placeholder="First Name" required>
                     <input type="text" class="form-control" id="" placeholder="Middle Name(Optional)">
                     <input type="text" class="form-control" id="" placeholder="Last Name" required>
                 </div>
                 <div class="form-group col-md-6">
-                    <label for="">Phone Number</label>
-                    <input class="form-control" type="number" name="" id="" placeholder="phone Number">
+                    <label for="">Phone Number <red>*</red></label>
+                    <input class="form-control" type="number" name="" id="" placeholder="phone Number" required>
                 </div>
                 <div class="form-group col-md-6">
-                    <label for="">Email</label>
-                    <input type="email" name="" class="form-control" id="" placeholder="Email">
+                    <label for="">Email <red>*</red></label>
+                    <input type="email" name="" class="form-control" id="" placeholder="Email" required>
                 </div>
             </div>
             <div class="form-row">
                 <div class="form-group col-md-4">
                     <label for="inputState">State of Origin <red> *</red></label>
-                    <select id="inputState" class="form-control">
+                    <select id="inputState"  required class="form-control">
                         <option selected>Choose state...</option>
                         <option value="Abia">Abia</option>
                         <option value="">Adamawa</option>
@@ -98,17 +98,17 @@
                     </select>
                 </div>
                 <div class="form-group">
-                    <label for="">Place of Birth</label>
-                    <input type="text" class="form-control" id="" placeholder="In the Manger?">
+                    <label for="">Place of Birth <red>*</red></label>
+                    <input type="text" class="form-control" id="" placeholder="In the Manger?" required>
                 </div>
                 <div class="form-group">
-                    <label for="inputAddress">Home Address</label>
-                    <input type="text" class="form-control" id="inputAddress" placeholder="1234 Main St">
+                    <label for="inputAddress">Home Address <red>*</red></label>
+                    <input type="text" class="form-control" id="inputAddress" placeholder="1234 Main St" required>
                 </div>
                 <div class="form-group">
-                    <label for="inputAddress2">Campus Address</label>
+                    <label for="inputAddress2">Campus Address <red>*</red></label>
                     <input type="text" class="form-control" id="inputAddress2"
-                        placeholder="Apartment, studio, or floor">
+                        placeholder="Apartment, studio, or floor" required>
                 </div>
             </div>
 
@@ -128,7 +128,7 @@
                 </div>
 
                 <div class="form-group col-md-6">
-                    <label for="">Marital Status</label>
+                    <label for="">Marital Status <red>*</red></label>
 
                     <div class="rad">
 

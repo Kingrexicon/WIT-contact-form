@@ -1,5 +1,16 @@
 /* TABLET */
 
-@media only screen and (max-width: 1080px){
-    
+@media only screen and (max-width: 1080px) {
+	body {
+		height: 100vh;
+
+		background-image: url(wit\ 24.jpg);
+		background-position: center;
+		background-size: 150%;
+	}
+    .form-cover {
+        height: 100vh;
+        width: 100%;
+        background-color: rgba(84, 50, 3, 0.624);
+    }
 }
