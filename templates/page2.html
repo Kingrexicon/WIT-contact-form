@@ -16,8 +16,29 @@
       href="{{ url_for('static', filename='style.mobile.css') }}"
     />
     <title>WIT Contact Form</title>
-  </head>
+    <script>
+      function updateDepartments() {
+        const faculty = document.getElementById("faculty").value;
+        const deptDropdown = document.getElementById("department");
 
+        fetch(`/get_departments?faculty=${encodeURIComponent(faculty)}`)
+          .then((response) => response.json())
+          .then((data) => {
+            deptDropdown.innerHTML =
+              "<option value='' disabled selected>-- Select Department --</option>";
+            data.departments.forEach((dept) => {
+              let option = document.createElement("option");
+              option.value = dept;
+              option.textContent = dept;
+              deptDropdown.appendChild(option);
+            });
+          })
+          .catch((error) =>
+            console.error("Error fetching departments:", error)
+          );
+      }
+    </script>
+  </head>
   <body>
     <div class="form-cover">
       <div class="nav">
@@ -34,16 +55,46 @@
         <div class="form-row">
           <div class="form-group">
             <label>Faculty <red>*</red></label>
-            <input type="text" name="faculty" class="form-control" required />
-          </div>
-          <div class="form-group">
-            <label>Department <red>*</red></label>
-            <input
-              type="text"
-              name="department"
+            <select
+              name="faculty"
+              id="faculty"
               class="form-control"
               required
-            />
+              onchange="updateDepartments()"
+            >
+              <option value="" disabled selected>-- Select Faculty --</option>
+              <option value="Administration">Administration</option>
+              <option value="Agriculture">Agriculture</option>
+              <option value="Arts">Arts</option>
+              <option value="Basic Medical Sciences">
+                Basic Medical Sciences
+              </option>
+              <option value="Clinical Sciences">Clinical Sciences</option>
+              <option value="Dentistry">Dentistry</option>
+              <option value="Education">Education</option>
+              <option value="Environmental Design and Management">
+                Environmental Design & Management
+              </option>
+              <option value="Law">Law</option>
+              <option value="Pharmacy">Pharmacy</option>
+              <option value="Science">Science</option>
+              <option value="Social Sciences">Social Sciences</option>
+              <option value="Technology">Technology</option>
+            </select>
+          </div>
+          <!-- Department Dropdown (Initially Empty) -->
+          <div class="form-group">
+            <label>Department <red>*</red></label>
+            <select
+              name="department"
+              id="department"
+              class="form-control"
+              required
+            >
+              <option value="" disabled selected>
+                -- Select Department --
+              </option>
+            </select>
           </div>
           <div class="form-group">
             <label>Current Year or Level <red>*</red></label>
@@ -55,7 +106,7 @@
             />
           </div>
           <div class="form-group">
-            <label>Duration for Course of Study <red>*</red></label>
+            <label>Duration for Course of Study in Years <red>*</red></label>
             <input
               type="text"
               name="study_duration"
@@ -228,7 +279,13 @@
 
           <div class="form-group">
             <label>Current CGPA <red>*</red></label>
-            <input type="text" name="cgpa" class="form-control" required />
+            <input
+              type="number"
+              name="cgpa"
+              class="form-control"
+              required
+              step="0.01"
+            />
           </div>
         </div>
 

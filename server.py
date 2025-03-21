@@ -1,10 +1,28 @@
-from flask import Flask, render_template, request, redirect, session, url_for, flash
+from flask import Flask, render_template, request, redirect, session, url_for, flash, jsonify
 import csv
 import os
 import re
 
 app = Flask(__name__)
 app.secret_key = "your_secret_key_here"  # Required for session handling
+
+
+# Faculty and Department Mapping
+faculty_departments = {
+    "Administration": ["Accounting", "Business Administration", "Public Administration", "Local Government Studies"],
+    "Agriculture": ["Agricultural Economics", "Animal Science", "Crop Production", "Soil Science"],
+    "Arts": ["English", "History", "Philosophy", "Music", "Linguistics"],
+    "Basic Medical Sciences": ["Anatomy", "Medical Biochemistry", "Medical Rehabilitation", "Physiology"],
+    "Clinical Sciences": ["Medicine and Surgery", "Nursing"],
+    "Dentistry": ["Dentistry"],
+    "Education": ["Educational Management", "Physical & Health Education", "Educational Foundations", "Guidance & Counselling"],
+    "Environmental Design and Management": ["Architecture", "Building", "Estate Management", "Fine and Applied Arts", "Quantity Surveying", "Survey and Geoinformatics", "Urban & Regional Planning"],
+    "Law": ["Law"],
+    "Pharmacy": ["Pharmacy"],
+    "Science": ["Biochemistry", "Botany", "Chemistry", "Computer Science", "Mathematics", "Microbiology", "Physics", "Zoology"],
+    "Social Sciences": ["Economics", "Geography", "Political Science", "Psychology", "Sociology"],
+    "Technology": ["Agricultural Engineering", "Chemical Engineering", "Civil Engineering", "Computer Engineering", "Electrical & Electronics Engineering", "Mechanical Engineering", "Materials Science & Engineering", "Food Science & Technology"]
+}
 
 # Ensure CSV file exists with headers
 csv_file = "submissions.csv"
@@ -32,25 +50,35 @@ def is_valid_phone_number(phone):
     pattern = r"^\+234\d{10}$"  # Starts with +234, followed by exactly 10 digits
     return re.match(pattern, phone) is not None
 
+
 @app.route("/")
 def form():
     return render_template("index.html")
 
+@app.route("/get_departments")
+def get_departments():
+    faculty = request.args.get("faculty")
+    departments = faculty_departments.get(faculty, [])  # Get departments for selected faculty
+    return jsonify({"departments": departments})  # Return as JSON
+
 @app.route("/page2", methods=["POST"])
 def page2():
-    email = request.form.get("email")  # Get email from form data
-    phone_number = request.form.get("phone_number")  # Get phone number
+    email = request.form.get("email")  
+    phone_number = request.form.get("phone_number")  
+
+    print(f"DEBUG - Phone Number Received: {phone_number}")  # ✅ Debugging Line
 
     if not is_valid_email(email):  
         flash("Invalid email address. Please enter a valid email.")
-        return redirect(url_for("form"))  # Stay on index.html
+        return redirect(url_for("form"))  
 
     if not is_valid_phone_number(phone_number):  
         flash("Invalid phone number. Please enter a valid Nigerian number (e.g., +2348023456789).")
-        return redirect(url_for("form"))  # Stay on index.html
+        return redirect(url_for("form"))  
 
-    session["user_data"] = request.form.to_dict()  # Store user data
-    return render_template("page2.html")  # Move to page2.html
+    session["user_data"] = request.form.to_dict()  
+    return render_template("page2.html")
+
 
 @app.route("/page3", methods=["GET", "POST"])
 def page3():
