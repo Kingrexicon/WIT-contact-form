@@ -1,0 +1,36 @@
+<!-- thankyou.html -->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Application Received</title>
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='style.css') }}"
+    />
+  </head>
+  <body>
+    <div class="form-cover">
+      <div class="nav">
+        <img src="{{ url_for('static', filename='rcf.png') }}" />
+        <div>
+          <h1>Workers-In-Training</h1>
+          <h2>Application Received</h2>
+        </div>
+      </div>
+      <div class="thank-you-message">
+        <p>
+          Thank you for applying for <strong>RCF OAU WIT Rain Semester</strong>.
+          Your application has been received successfully.
+        </p>
+        <p>
+          Click the link below to access the <strong>WIT Registrar</strong>:
+        </p>
+        <a href="https://wa.me/2349028373561" class="btn btn-primary"
+          >Go to WIT Registrar</a
+        >
+      </div>
+    </div>
+  </body>
+</html>

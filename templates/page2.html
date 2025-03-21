@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='style.css') }}"
+    />
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='style.tablet.css') }}"
+    />
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='style.mobile.css') }}"
+    />
+    <title>WIT Contact Form</title>
+  </head>
+
+  <body>
+    <div class="form-cover">
+      <div class="nav">
+        <img src="{{ url_for('static', filename='rcf.png') }}" />
+        <div>
+          <h1>
+            Workers-In-Training
+            <h2>Contact Form</h2>
+          </h1>
+        </div>
+      </div>
+
+      <form action="/page2" method="POST">
+        <div class="form-row">
+          <div class="form-group">
+            <label>Faculty <red>*</red></label>
+            <input type="text" name="faculty" class="form-control" required />
+          </div>
+          <div class="form-group">
+            <label>Department <red>*</red></label>
+            <input
+              type="text"
+              name="department"
+              class="form-control"
+              required
+            />
+          </div>
+          <div class="form-group">
+            <label>Current Year or Level <red>*</red></label>
+            <input
+              type="text"
+              name="year_level"
+              class="form-control"
+              required
+            />
+          </div>
+          <div class="form-group">
+            <label>Duration for Course of Study <red>*</red></label>
+            <input
+              type="text"
+              name="study_duration"
+              class="form-control"
+              required
+            />
+          </div>
+          <div class="form-group">
+            <label>Expected Year of Graduation <red>*</red></label>
+            <input
+              type="number"
+              name="grad_year"
+              class="form-control"
+              required
+            />
+          </div>
+          <div class="form-group">
+            <label>What year did you join RCF? <red>*</red></label>
+            <input
+              type="number"
+              name="rcf_year"
+              class="form-control"
+              required
+            />
+          </div>
+
+          <div class="form-group col-md-6">
+            <label>Mode of Admission <red>*</red></label>
+            <div class="rad">
+              <label
+                ><input
+                  type="radio"
+                  name="admission_mode"
+                  value="Jamb"
+                  required
+                />
+                Jamb</label
+              >
+              <label
+                ><input
+                  type="radio"
+                  name="admission_mode"
+                  value="Direct Entry"
+                  required
+                />
+                Direct Entry</label
+              >
+              <label
+                ><input
+                  type="radio"
+                  name="admission_mode"
+                  value="Others"
+                  required
+                />
+                Others</label
+              >
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label>Special Talent(s)</label>
+            <input type="text" name="talents" class="form-control" />
+          </div>
+
+          <div class="form-group col-md-6">
+            <label>Any Personal Challenge(s)? <red>*</red></label>
+            <div class="rad">
+              <label
+                ><input
+                  type="radio"
+                  name="personal_challenge"
+                  value="Yes"
+                  required
+                />
+                Yes</label
+              >
+              <label
+                ><input
+                  type="radio"
+                  name="personal_challenge"
+                  value="No"
+                  required
+                />
+                No</label
+              >
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label>If "Yes", State Here</label>
+            <input type="text" name="challenge_details" class="form-control" />
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label>Home Church <red>*</red></label>
+            <input
+              type="text"
+              name="home_church"
+              class="form-control"
+              required
+            />
+          </div>
+
+          <div class="form-group col-md-6">
+            <label>Are you a Worker at Home? <red>*</red></label>
+            <div class="rad">
+              <label
+                ><input type="radio" name="worker_home" value="Yes" required />
+                Yes</label
+              >
+              <label
+                ><input type="radio" name="worker_home" value="No" required />
+                No</label
+              >
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label>If "Yes", What Department(s)?</label>
+            <input type="text" name="home_dept" class="form-control" />
+          </div>
+
+          <div class="form-group col-md-6">
+            <label>Any Academic Challenge(s)? <red>*</red></label>
+            <div class="rad">
+              <label
+                ><input
+                  type="radio"
+                  name="academic_challenge"
+                  value="Yes"
+                  required
+                />
+                Yes</label
+              >
+              <label
+                ><input
+                  type="radio"
+                  name="academic_challenge"
+                  value="No"
+                  required
+                />
+                No</label
+              >
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label>If "Yes", State Here</label>
+            <input
+              type="text"
+              name="academic_challenge_details"
+              class="form-control"
+            />
+          </div>
+
+          <div class="form-group">
+            <label
+              >Are you involved in any Extra Curricular Activities?
+              <red>*</red></label
+            >
+            <input
+              type="text"
+              name="extra_activities"
+              class="form-control"
+              required
+            />
+          </div>
+
+          <div class="form-group">
+            <label>Current CGPA <red>*</red></label>
+            <input type="text" name="cgpa" class="form-control" required />
+          </div>
+        </div>
+
+        <button type="submit" class="btn btn-primary">Next</button>
+      </form>
+    </div>
+  </body>
+</html>

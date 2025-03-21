@@ -1,0 +1,33 @@
+<!-- notfound.html -->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Page Not Found</title>
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='style.css') }}"
+    />
+  </head>
+  <body>
+    <div class="form-cover">
+      <div class="nav">
+        <img src="{{ url_for('static', filename='rcf.png') }}" />
+        <div>
+          <h1>Oops! Lost in the WITverse?</h1>
+        </div>
+      </div>
+      <div class="not-found-message">
+        <p>
+          Well, this is awkward... 🤔 It seems you've wandered into the unknown.
+        </p>
+        <p>
+          Maybe the Holy Spirit led you here, or maybe it's just a wrong link.
+          Either way, let's get you back on track!
+        </p>
+        <a href="/" class="btn btn-primary">Take Me Home</a>
+      </div>
+    </div>
+  </body>
+</html>
