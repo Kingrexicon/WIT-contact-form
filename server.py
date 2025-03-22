@@ -128,38 +128,73 @@ def submit_final():
         # Get all data from session and update with page3 data
         user_data = session.get("user_data", {})
         user_data.update(request.form.to_dict())
-        
+
+        # Ensure upload directory exists
+        upload_folder = "static/uploads"
+        os.makedirs(upload_folder, exist_ok=True)
+
         # Handle file upload
         passport_photo = request.files.get("passport_photo")
-        if passport_photo:
-            photo_path = os.path.join("static/uploads", passport_photo.filename)
+        if passport_photo and user_data.get("first_name") and user_data.get("last_name") and user_data.get("middle_name"):
+            first_name = user_data["first_name"].strip().lower()
+            last_name = user_data["last_name"].strip().lower()
+            middle_name = user_data["middle_name"].strip().lower()
+
+            # Get file extension
+            file_extension = os.path.splitext(passport_photo.filename)[1]
+
+            # Construct new filename
+            new_filename = f"{first_name}{last_name}{middle_name}{file_extension}"
+            photo_path = os.path.join(upload_folder, new_filename)
+
+            # Save file
             passport_photo.save(photo_path)
-            user_data["passport_photo"] = photo_path
-        
+            user_data["passport_photo"] = photo_path  # Store path in CSV
+
         # Save to CSV
         with open(csv_file, "a", newline="") as file:
             writer = csv.DictWriter(file, fieldnames=[
-                "first_name", "middle_name", "last_name", "email", "phone_number", "state", 
+                "first_name", "middle_name", "last_name", "email", "phone_number", "state",
                 "birth_place", "home_address", "campus_address", "gender", "marital",
-                "faculty", "department", "year_level", "study_duration", "grad_year", 
-                "rcf_year", "admission_mode", "talents", "personal_challenge", 
-                "challenge_details", "home_church", "worker_home", "home_dept", 
-                "academic_challenge", "academic_challenge_details", "extra_activities", 
-                "cgpa", "bornAgain", "bornAgain_details", "water_baptism", "holyGhost", 
-                "baptism_evidence", "passport_photo", "guardian_name", "guardian_relationship", 
+                "faculty", "department", "year_level", "study_duration", "grad_year",
+                "rcf_year", "admission_mode", "talents", "personal_challenge",
+                "challenge_details", "home_church", "worker_home", "home_dept",
+                "academic_challenge", "academic_challenge_details", "extra_activities",
+                "cgpa", "bornAgain", "bornAgain_details", "water_baptism", "holyGhost",
+                "baptism_evidence", "passport_photo", "guardian_name", "guardian_relationship",
                 "guardian_number", "guardian_address", "guardian_awareness"
             ])
             writer.writerow(user_data)
 
-         # Send email to the user
+        # Send email to the user
         user_email = user_data.get("email")
-        email_subject = "Thank You for Your Submission"
-        email_body = "Hello,\n\nThank you for submitting the WIT Contact Form. We’ve received your details and will get back to you if needed.\n\nBest regards,\nThe WIT Team"
+        recipient_name = user_data.get("first_name", "Participant")  # Default to 'Participant' if no name is provided
+        registrar_link = os.getenv("WHATSAPP_LINK")
+
+        email_subject = "Welcome to the Workers In Training Group – Rain Semester 2025"
+        email_body = f"""Dear {recipient_name},
+
+        Congratulations! 🎉 We are delighted to officially welcome you to the Workers In Training (WIT) Group for the Rain Semester 2025.
+
+        We are truly blessed to have you join us. Prayers have been made, words have gone ahead, and we believe great things are in store for you.
+
+        ✨ You are in the right place! ✨
+
+        For the next steps, please access the Registrar for further instructions by clicking the link below:
+
+        🔗 [Access the Registrar Here]({registrar_link})
+
+        Once again, welcome! We look forward to seeing you soon.
+
+        Best regards,  
+        WIT Registrar & WIT Coordinator
+        """
+
         send_email(user_email, email_subject, email_body)
-        
+
         # Clear session after saving
         session.pop("user_data", None)
-        
+
         return redirect(url_for("thank_you"))
 
 @app.route("/thankyou")
