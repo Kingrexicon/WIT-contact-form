@@ -1,7 +1,8 @@
 .env
-/static/uploads
-Lib
-Scripts
-Include
-__pycache__
+/static/uploads/
+Lib/
+Scripts/
+Include/
+__pycache__/
 submissions.csv
+pyvenv.cfg

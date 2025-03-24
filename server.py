@@ -35,7 +35,7 @@ if not os.path.exists(csv_file):
         writer = csv.writer(file)
         writer.writerow([
             "first_name", "middle_name", "last_name", "email", "phone_number", "state", 
-            "birth_place", "home_address", "campus_address", "gender", "marital",  # Added index.html fields
+            "birth_place", "home_address", "campus_address", "gender", "marital", 
             "faculty", "department", "year_level", "study_duration", "grad_year", 
             "rcf_year", "admission_mode", "talents", "personal_challenge", 
             "challenge_details", "home_church", "worker_home", "home_dept", 
@@ -168,27 +168,37 @@ def submit_final():
 
         # Send email to the user
         user_email = user_data.get("email")
-        recipient_name = user_data.get("first_name", "Participant")  # Default to 'Participant' if no name is provided
-        registrar_link = os.getenv("WHATSAPP_LINK")
+        recipient_name = user_data.get("first_name", "Participant")  # Default to 'Participant' if no name
 
         email_subject = "Welcome to the Workers In Training Group – Rain Semester 2025"
-        email_body = f"""Dear {recipient_name},
+        
+        # Default email body as fallback
+        default_email_body = f"""Dear {recipient_name},
 
-        Congratulations! 🎉 We are delighted to officially welcome you to the Workers In Training (WIT) Group for the Rain Semester 2025.
+Congratulations! 🎉 We are delighted to officially welcome you to the Workers In Training (WIT) Group for the Rain Semester 2025.
 
-        We are truly blessed to have you join us. Prayers have been made, words have gone ahead, and we believe great things are in store for you.
+We are truly blessed to have you join us. Prayers have been made, words have gone ahead, and we believe great things are in store for you.
 
-        ✨ You are in the right place! ✨
+✨ You are in the right place! ✨
 
-        For the next steps, please access the Registrar for further instructions by clicking the link below:
+You are going to be updated in real time For the next steps
 
-        🔗 [Access the Registrar Here]({registrar_link})
+Once again, welcome! We look forward to seeing you soon.
 
-        Once again, welcome! We look forward to seeing you soon.
+Best regards,
+WIT Registrar & WIT Coordinator"""
 
-        Best regards,  
-        WIT Registrar & WIT Coordinator
-        """
+        # Try to read and format the email template, excluding comments
+        try:
+            with open("email_template.txt", "r") as template_file:
+                # Read lines and filter out comments starting with #
+                lines = [line for line in template_file.readlines() if not line.strip().startswith('#')]
+                email_template = ''.join(lines)
+            # Format the template with only recipient_name
+            email_body = email_template.format(recipient_name=recipient_name)
+        except (FileNotFoundError, KeyError):
+            # Use the default message if file is missing or placeholder is incorrect
+            email_body = default_email_body
 
         send_email(user_email, email_subject, email_body)
 
