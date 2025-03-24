@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='style.css') }}"
+    />
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='style.tablet.css') }}"
+    />
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='style.mobile.css') }}"
+    />
+
+    <title>WIT Contact form</title>
+  </head>
+
+  <body>
+    <div class="form-cover">
+      <div class="nav">
+        <img src="{{ url_for('static', filename='rcf.png') }}" />
+        <div>
+          <h1>
+            Workers-In-Training
+            <h2>Contact Form</h2>
+          </h1>
+        </div>
+      </div>
+
+      {% with messages = get_flashed_messages() %} {% if messages %}
+      <div class="alert alert-danger">{{ messages[0] }}</div>
+      {% endif %} {% endwith %}
+
+      <!-- Updated form with the correct action -->
+      <form action="/page2" method="POST">
+        <div class="form-row">
+          <div class="form-group col-md-6">
+            <label for="name">Name <red></red></label>
+            <input
+              type="text"
+              class="form-control"
+              name="first_name"
+              placeholder="First Name"
+              required
+            />
+            <input
+              type="text"
+              class="form-control"
+              name="middle_name"
+              placeholder="Middle Name"
+              required
+            />
+            <input
+              type="text"
+              class="form-control"
+              name="last_name"
+              placeholder="Last Name"
+              required
+            />
+          </div>
+          <div class="form-group col-md-6">
+            <label for="">Phone Number <red>*</red></label>
+            <input
+              class="form-control"
+              name="phone_number"
+              type="text"
+              placeholder="Whatsapp Number (+234)"
+              required
+            />
+          </div>
+          <div class="form-group col-md-6">
+            <label for="">Email <red>*</red></label>
+            <input
+              type="email"
+              class="form-control"
+              name="email"
+              placeholder="Email"
+              required
+            />
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group col-md-4">
+            <label for="inputState">State of Origin <red> *</red></label>
+            <select id="inputState" name="state" required class="form-control">
+              <option selected>Choose state...</option>
+              <option value="Abia">Abia</option>
+              <option value="Adamawa">Adamawa</option>
+              <option value="Akwa Ibom">Akwa Ibom</option>
+              <option value="Anambra">Anambra</option>
+              <option value="Bauchi">Bauchi</option>
+              <option value="Bayelsa">Bayelsa</option>
+              <option value="Benue">Benue</option>
+              <option value="Borno">Borno</option>
+              <option value="Cross River">Cross River</option>
+              <option value="Delta">Delta</option>
+              <option value="Ebonyi">Ebonyi</option>
+              <option value="Edo">Edo</option>
+              <option value="Ekiti">Ekiti</option>
+              <option value="Enugu">Enugu</option>
+              <option value="Gombe">Gombe</option>
+              <option value="Imo">Imo</option>
+              <option value="Jigawa">Jigawa</option>
+              <option value="Kaduna">Kaduna</option>
+              <option value="Kano">Kano</option>
+              <option value="Katsina">Katsina</option>
+              <option value="Kebbi">Kebbi</option>
+              <option value="Kogi">Kogi</option>
+              <option value="Kwara">Kwara</option>
+              <option value="Lagos">Lagos</option>
+              <option value="Nasarawa">Nasarawa</option>
+              <option value="Niger">Niger</option>
+              <option value="Ogun">Ogun</option>
+              <option value="Ondo">Ondo</option>
+              <option value="Osun">Osun</option>
+              <option value="Oyo">Oyo</option>
+              <option value="Plateau">Plateau</option>
+              <option value="Rivers">Rivers</option>
+              <option value="Sokoto">Sokoto</option>
+              <option value="Taraba">Taraba</option>
+              <option value="Yobe">Yobe</option>
+              <option value="Zamfara">Zamfara</option>
+              <option value="FCT">FCT</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="">Place of Birth <red>*</red></label>
+            <input
+              type="text"
+              class="form-control"
+              name="birth_place"
+              placeholder="Place of Birth"
+              required
+            />
+          </div>
+          <div class="form-group">
+            <label for="inputAddress">Home Address <red>*</red></label>
+            <input
+              type="text"
+              class="form-control"
+              name="home_address"
+              id="inputAddress"
+              placeholder="1234 Main St"
+              required
+            />
+          </div>
+          <div class="form-group">
+            <label for="inputAddress2">Campus Address <red>*</red></label>
+            <input
+              type="text"
+              class="form-control"
+              name="campus_address"
+              id="inputAddress2"
+              placeholder="Apartment, studio, or floor"
+              required
+            />
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group col-md-6">
+            <label for="">Gender</label>
+
+            <div class="rad">
+              <label class="radio">
+                <input type="radio" name="gender" required /> Male
+              </label>
+
+              <label class="radio">
+                <input type="radio" name="gender" required /> Female
+              </label>
+            </div>
+          </div>
+
+          <div class="form-group col-md-6">
+            <label for="">Marital Status <red>*</red></label>
+
+            <div class="rad">
+              <label class="radio">
+                <input type="radio" name="marital" required /> Single
+              </label>
+
+              <label class="radio">
+                <input type="radio" name="marital" required /> Married
+              </label>
+
+              <label class="radio">
+                <input type="radio" name="marital" required /> Others
+              </label>
+            </div>
+          </div>
+        </div>
+
+        <!-- "Next" button now properly submits the form to page2.html -->
+        <button type="submit" class="btn btn-primary">Next</button>
+      </form>
+    </div>
+  </body>
+</html>

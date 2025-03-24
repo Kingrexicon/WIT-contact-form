@@ -1,0 +1,17 @@
+# Note: Keep {recipient_name} in the text for the email to work correctly. Update the registrar link directly below as needed.
+Dear {recipient_name},
+
+Congratulations! 🎉 We are delighted to officially welcome you to the Workers In Training (WIT) Group for the Rain Semester 2025.
+
+We are truly blessed to have you join us. Prayers have been made, words have gone ahead, and we believe great things are in store for you.
+
+✨ You are in the right place! ✨
+
+For the next steps, please access the Registrar for further instructions by clicking the link below:
+
+🔗 [Access the Registrar Here](https://wa.me/2349028373561)
+
+Once again, welcome! We look forward to seeing you soon.
+
+Best regards,
+WIT Registrar & WIT Coordinator

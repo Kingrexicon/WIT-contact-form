@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Application Received</title>
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='style.css') }}"
+    />
+    <style>
+      /* Internal CSS for specific styling */
+      body {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-height: 100vh; /* Ensures the body takes full viewport height */
+        margin: 0; /* Removes default margin */
+        background-color: #f0f0f0; /* Optional: light gray background for contrast */
+      }
+
+      .form-cover {
+        text-align: center; /* Centers all text and inline elements inside */
+        padding: 20px;
+        max-width: 600px; /* Limits width for readability */
+      }
+
+      .nav {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-bottom: 20px;
+      }
+
+      .nav img {
+        max-width: 100px; /* Adjust as needed */
+        margin-right: 10px;
+      }
+
+      .thank-you-message {
+        color: white; /* White text for the message */
+        background-color: rgba(
+          0,
+          0,
+          0,
+          0.7
+        ); /* Semi-transparent black background for contrast */
+        padding: 20px;
+        border-radius: 8px;
+      }
+
+      .thank-you-message p {
+        margin: 10px 0; /* Spacing between paragraphs */
+      }
+
+      .btn-home {
+        display: inline-block;
+        padding: 10px 20px;
+        background-color: #87ceeb; /* Light blue color */
+        color: white; /* White text on button */
+        text-decoration: none; /* Removes underline from link */
+        border-radius: 5px;
+        margin-top: 20px; /* Space above the button */
+        transition: background-color 0.3s; /* Smooth hover effect */
+      }
+
+      .btn-home:hover {
+        background-color: #6bb9d8; /* Slightly darker light blue on hover */
+      }
+    </style>
+  </head>
+  <body>
+    <div class="form-cover">
+      <div class="nav">
+        <img src="{{ url_for('static', filename='rcf.png') }}" alt="RCF Logo" />
+        <div>
+          <h1>Workers-In-Training</h1>
+          <h2>Application Received</h2>
+        </div>
+      </div>
+      <div class="thank-you-message">
+        <p>
+          Your application has been received successfully. Kindly check your
+          MAIL INBOX OR SPAM for further instructions.
+        </p>
+        <p>Go back to home page:</p>
+        <a href="/" class="btn-home">Home Page</a>
+      </div>
+    </div>
+  </body>
+</html>

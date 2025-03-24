@@ -1,0 +1,9 @@
+.env
+/static/uploads/
+Lib/
+Scripts/
+Include/
+__pycache__/
+submissions.csv
+pyvenv.cfg
+email_template.txt
