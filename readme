@@ -1,1 +1,133 @@
- no scroll page with a self page that doesnt require another page technically
+markdown
+### WIT Contact Form
+
+This is a Flask-based web application for the **Workers-In-Training (WIT) Group at RCF OAU**, designed to collect applicant data, store it in a CSV file, and send a welcome email. The application is structured into modules for maintainability and supports a custom email template with dynamic applicant names.
+
+#### Features
+
+- Multi-page form for collecting applicant details (personal, academic, spiritual, etc.).
+- Saves uploaded passport photos with a `firstnamelastname.extension` naming convention.
+- Stores form submissions in `submissions.csv`.
+- Sends a welcome email using a template from `email_template.txt` with UTF-8 support for emojis.
+- Modular design for easy debugging and updates.
+
+#### Prerequisites
+
+- Python 3.9+
+- Git (optional, for version control)
+- A Gmail account with an App Password for email sending
+
+#### Installation
+
+1. **Clone the Repository** (if hosted on GitHub):
+   ```bash
+   git clone https://github.com/kehman18/wit-contact-form.git
+   cd wit-contact-form
+   
+Create a Virtual Environment:
+bash
+python -m venv venv
+source venv/bin/activate  # On Windows: venv\Scripts\activate
+
+Install Dependencies:
+bash
+pip install -r requirements.txt
+
+If no requirements.txt exists yet, install these:
+bash
+pip install flask python-dotenv
+
+Set Up Environment Variables:
+Create a .env file in the root directory with:
+plaintext
+APP_SECRET_KEY=your-secret-key-here
+MAIL_SENDER=your-email@gmail.com
+MAIL_PASSWORD=your-16-character-app-password
+Generate an App Password from your Google Account if 2FA is enabled (instructions).
+
+Prepare Static and Template Folders:
+Ensure static/uploads/ exists for photo uploads (created automatically on first upload).
+Verify templates/ contains index.html, page2.html, page3.html, thankyou.html, and notfound.html.
+
+Configure Email Template:
+Edit email_template.txt to customize the welcome message. Keep {recipient_name} as a placeholder. Example:
+plaintext
+# Note: Keep {recipient_name} in the text for personalization.
+Dear {recipient_name},
+Congratulations! 🎉 Welcome to WIT Rain Semester 2025.
+🔗 [Registrar Link](https://example.com/registrar)
+Best regards,
+WIT Team
+
+Project Structure
+wit-contact-form/
+├── static/
+│   └── uploads/          # Stores uploaded passport photos
+├── templates/            # HTML templates
+│   ├── index.html
+│   ├── page2.html
+│   ├── page3.html
+│   ├── thankyou.html
+│   └── notfound.html
+├── config.py             # Configuration (secrets, constants, CSV setup)
+├── email_utils.py        # Email sending logic
+├── form_utils.py         # Form validation and file/CSV handling
+├── routes.py             # Route definitions
+├── server.py             # Main Flask app
+├── email_template.txt    # Email template with registrar link
+├── submissions.csv       # Stores form data
+├── .env                  # Environment variables (not tracked)
+└── README.md             # This file
+
+Usage
+Run the Application:
+bash
+python server.py
+Open http://localhost:5000 in your browser.
+Debug mode is enabled by default (app.run(debug=True)).
+
+Form Flow:
+/: Start with index.html (personal details).
+/page2: Academic and WIT details.
+/page3: Spiritual and guardian details, photo upload.
+/submit_final: Submits data, saves to CSV, sends email, redirects to /thankyou.
+
+Email:
+Reads from email_template.txt with UTF-8 encoding for emoji support.
+Falls back to a default message if the template is missing or misconfigured.
+
+CSV Output:
+Data is appended to submissions.csv with all fields listed in config.py.
+
+Modules
+config.py: Defines constants (e.g., FACULTY_DEPARTMENTS, email settings) and initializes submissions.csv.
+email_utils.py: Handles email sending with SMTP and UTF-8 support.
+form_utils.py: Validates email/phone and manages CSV/photo saving.
+routes.py: Contains all Flask routes and logic.
+server.py: Initializes the app and ties modules together.
+
+Troubleshooting
+Email Not Sending: Check .env for correct MAIL_SENDER and MAIL_PASSWORD. Ensure Gmail’s “Less secure app access” is off and App Password is used.
+Photo Upload Fails: Verify static/uploads/ is writable.
+Template Errors: Ensure {recipient_name} is in email_template.txt; comments (#) are ignored.
+500 Errors: Run with debug=True and check the console.
+
+Hosting
+This app can be hosted on platforms like:
+InfinityFree: Free forever, supports custom domains (requires separate purchase of rcfoauwit.com).
+Vercel: Free tier, needs Flask adaptation for static/serverless deployment.
+ONEbit Hosting: 60-day free trial, then ~$5/month.
+To use a custom domain (rcfoauwit.com):
+Purchase the domain (e.g., Namecheap, ~$10/year).
+Configure DNS to point to your host’s servers.
+
+Contributing
+Fork the repository, make changes, and submit a pull request.
+For major updates, open an issue first to discuss.
+
+License
+This project is unlicensed—feel free to use and modify it as needed for RCF OAU WIT.
+
+Contact
+For questions, reach out to [your-email@example.com (mailto:your-email@example.com)] or the WIT Registrar.
+```
