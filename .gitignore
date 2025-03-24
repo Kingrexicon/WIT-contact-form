@@ -6,3 +6,4 @@ Include/
 __pycache__/
 submissions.csv
 pyvenv.cfg
+email_template.txt
