@@ -3,18 +3,13 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link
-      rel="stylesheet"
-      href="{{ url_for('static', filename='style.css') }}"
-    />
-    <link
-      rel="stylesheet"
-      href="{{ url_for('static', filename='style.tablet.css') }}"
-    />
-    <link
-      rel="stylesheet"
-      href="{{ url_for('static', filename='style.mobile.css') }}"
-    />
+    <link rel="shortcut icon" href="rcf.png" type="image/x-icon">
+
+    <link rel="stylesheet" href="./style.css">
+    <link rel="stylesheet" href="./style.tablet.css">
+    <link rel="stylesheet" href="./style.mobile.css">
+  
+
     <title>WIT Contact Form</title>
     <script>
       function updateDepartments() {
@@ -42,7 +37,7 @@
   <body>
     <div class="form-cover">
       <div class="nav">
-        <img src="{{ url_for('static', filename='rcf.png') }}" />
+        <img src="rcf.png" />
         <div>
           <h1>
             Workers-In-Training
