@@ -14,7 +14,7 @@
   <body>
     <div class="form-cover">
       <div class="nav">
-        <img src="{{ url_for('static', filename='rcf.png') }}" />
+        <img src="../static/rcf.png" />
         <div>
           <h1>
             Workers-In-Training
@@ -23,9 +23,9 @@
         </div>
       </div>
 
-      {% with messages = get_flashed_messages() %} {% if messages %}
+      <!-- {% with messages = get_flashed_messages() %} {% if messages %}
       <div class="alert alert-danger">{{ messages[0] }}</div>
-      {% endif %} {% endwith %}
+      {% endif %} {% endwith %} -->
 
       <!-- Updated form with the correct action -->
       <form action="/page2" method="POST">
